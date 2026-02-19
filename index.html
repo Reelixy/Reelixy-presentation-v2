@@ -202,20 +202,6 @@
       flex-wrap: wrap;
     }
 
-    .section-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: rgba(0, 87, 183, 0.12);
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.92rem;
-      flex-shrink: 0;
-    }
-
     h1,
     h2,
     h3 {
@@ -271,22 +257,6 @@
       top: -95px;
       background: radial-gradient(circle, rgba(0, 87, 183, 0.3), transparent 65%);
       pointer-events: none;
-    }
-
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(0, 87, 183, 0.24);
-      background: rgba(255, 255, 255, 0.88);
-      color: var(--primary);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
     }
 
     .cover-site {
@@ -407,37 +377,17 @@
     }
 
     .timeline {
-      counter-reset: steps;
       list-style: none;
       display: grid;
       gap: 12px;
+      padding-left: 0;
     }
 
     .timeline li {
-      counter-increment: steps;
-      display: grid;
-      grid-template-columns: 38px 1fr;
-      gap: 12px;
-      align-items: start;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 14px;
       border: 1px solid var(--line);
       padding: 14px;
-    }
-
-    .timeline li::before {
-      content: counter(steps);
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 87, 183, 0.14);
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-top: 1px;
     }
 
     .result {
@@ -466,13 +416,8 @@
     .cta-box h2,
     .cta-box p,
     .cta-box a,
-    .cta-box li,
-    .cta-box .section-number {
+    .cta-box li {
       color: white;
-    }
-
-    .cta-box .section-number {
-      background: rgba(255, 255, 255, 0.2);
     }
 
     .cta-row {
@@ -618,11 +563,6 @@
         border-radius: 20px;
       }
 
-      .section-number {
-        width: 30px;
-        height: 30px;
-      }
-
       .cta-row .btn {
         width: 100%;
       }
@@ -639,7 +579,7 @@
     <div class="container">
       <div class="header-row">
         <a class="brand" href="#cover" aria-label="Reelixy">
-          <img src="https://www.reelixy.com/Logo_Reelixy.jpeg" alt="Reelixy logo">
+          <img src="assets/logo-reelixy.jpeg" alt="Reelixy logo">
           <span class="brand-title">
             <strong>Reelixy</strong>
             <span>AI Business Automation</span>
@@ -650,7 +590,6 @@
 
         <nav class="top-nav" id="main-nav">
           <ul>
-            <li><a href="#cover">Обкладинка</a></li>
             <li><a href="#who">Хто ми</a></li>
             <li><a href="#solutions">Рішення</a></li>
             <li><a href="#packages">Пакети</a></li>
@@ -668,7 +607,6 @@
     <section class="section cover" id="cover">
       <div class="container">
         <article class="cover-card reveal">
-          <span class="kicker">1. Обкладинка</span>
           <h1>Reelixy — AI Business Automation</h1>
           <p class="lead">Партнер з цифрової трансформації та автоматизації бізнес‑процесів за допомогою AI.</p>
           <p class="cover-site"><a href="https://reelixy.com" target="_blank" rel="noopener noreferrer">reelixy.com</a></p>
@@ -683,7 +621,6 @@
     <section class="section" id="who">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">2</span>
           <h2>Хто ми</h2>
         </div>
         <p class="lead reveal">Reelixy — команда, що впроваджує AI в бізнес-процеси.</p>
@@ -699,7 +636,6 @@
     <section class="section" id="mission">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">3</span>
           <h2>Про що ми (наша місія)</h2>
         </div>
         <p class="lead reveal">Робимо бізнес швидшим, точнішим і керованим через автоматизацію та AI.</p>
@@ -715,7 +651,6 @@
     <section class="section" id="numbers">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">4</span>
           <h2>Цифри, які підтверджують експертизу</h2>
         </div>
         <div class="grid grid-4 reveal">
@@ -742,7 +677,6 @@
     <section class="section" id="founders">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">5</span>
           <h2>Засновники</h2>
         </div>
         <div class="grid grid-2 reveal">
@@ -763,7 +697,6 @@
     <section class="section" id="audience">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">6</span>
           <h2>Для кого ми</h2>
         </div>
         <p class="lead reveal">Для компаній, які хочуть системність та зростання без роздування штату.</p>
@@ -789,17 +722,16 @@
     <section class="section" id="what-we-build">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">7</span>
           <h2>Що ми створюємо</h2>
         </div>
         <p class="lead reveal">Працюємо у двох напрямах:</p>
         <div class="grid grid-2 reveal">
           <article class="card">
-            <h3>1. Готові продукти</h3>
+            <h3>Готові продукти</h3>
             <p>Швидкий запуск та прогнозований результат.</p>
           </article>
           <article class="card">
-            <h3>2. Кастомні AI‑рішення</h3>
+            <h3>Кастомні AI‑рішення</h3>
             <p>Під ваші задачі: інтеграції, нестандартні процеси, специфічні вимоги.</p>
           </article>
         </div>
@@ -809,7 +741,6 @@
     <section class="section" id="solutions">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">8</span>
           <h2>Наші AI‑рішення (лінійка)</h2>
         </div>
         <div class="grid grid-3 reveal">
@@ -844,7 +775,6 @@
     <section class="section" id="packages">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">9</span>
           <h2>Пакети (продуктовий підхід до впровадження)</h2>
         </div>
         <div class="grid grid-3 reveal">
@@ -886,7 +816,6 @@
     <section class="section" id="process">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">10</span>
           <h2>Як ми працюємо (етапи)</h2>
         </div>
         <ol class="timeline reveal">
@@ -904,7 +833,6 @@
       <div class="container">
         <div class="crm-frame reveal">
           <div class="section-head" style="margin-bottom: 14px;">
-            <span class="section-number">11</span>
             <h2>Важлива рамка: Reelixy CRM — це продукт</h2>
           </div>
           <p class="lead">Ми — Reelixy (команда AI‑автоматизації). Reelixy CRM — наш продукт, який допомагає систематизувати продажі та взаємодію з клієнтами.</p>
@@ -915,7 +843,6 @@
     <section class="section" id="crm-value">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">12</span>
           <h2>Reelixy CRM — що це дає бізнесу</h2>
         </div>
         <ul class="list reveal">
@@ -931,7 +858,6 @@
     <section class="section" id="crm-fit">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">13</span>
           <h2>Кому підходить Reelixy CRM</h2>
         </div>
         <ul class="list reveal">
@@ -945,7 +871,6 @@
     <section class="section" id="crm-modules">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">14</span>
           <h2>Що всередині Reelixy CRM (модулі)</h2>
         </div>
         <div class="grid grid-2 reveal">
@@ -988,7 +913,6 @@
     <section class="section" id="why-now">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-number">15</span>
           <h2>Чому зараз (болі, які закриваємо)</h2>
         </div>
         <ul class="list reveal">
@@ -1005,7 +929,6 @@
       <div class="container">
         <article class="cta-box reveal">
           <div class="section-head" style="margin-bottom: 12px;">
-            <span class="section-number">16</span>
             <h2>Call to action</h2>
           </div>
           <p class="lead">Безкоштовний аудит: покажемо, що автоматизувати першим і який буде ефект/ROI саме для вашого бізнесу.</p>
