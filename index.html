@@ -26,12 +26,20 @@
             --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
         }
 
+        html {
+            scroll-padding-top: 100px;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background: var(--light);
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
 
         .container {
@@ -57,6 +65,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 16px;
         }
 
         .logo {
@@ -85,6 +94,21 @@
             color: var(--primary);
         }
 
+        .mobile-menu-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: white;
+            color: var(--dark);
+            font-size: 20px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
         .cta-btn {
             background: var(--gradient);
             color: white;
@@ -100,6 +124,7 @@
             justify-content: center;
             z-index: 10;
             position: relative;
+            white-space: nowrap;
         }
 
         .cta-btn:hover {
@@ -139,7 +164,7 @@
         }
 
         .hero-text h1 {
-            font-size: 52px;
+            font-size: clamp(34px, 6vw, 52px);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
@@ -150,7 +175,7 @@
         }
 
         .hero-text .subtitle {
-            font-size: 20px;
+            font-size: clamp(16px, 2.6vw, 20px);
             color: var(--gray);
             margin-bottom: 30px;
             line-height: 1.8;
@@ -200,7 +225,7 @@
         }
 
         .section-header h2 {
-            font-size: 42px;
+            font-size: clamp(30px, 4.8vw, 42px);
             font-weight: 700;
             margin-bottom: 15px;
             color: var(--dark);
@@ -263,7 +288,7 @@
 
         .solution-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
         }
 
@@ -401,7 +426,7 @@
         }
 
         .ai-text h2 {
-            font-size: 42px;
+            font-size: clamp(30px, 4.8vw, 42px);
             font-weight: 700;
             margin-bottom: 20px;
             text-align: center;
@@ -463,13 +488,13 @@
         }
 
         .cta-section h2 {
-            font-size: 48px;
+            font-size: clamp(32px, 5.6vw, 48px);
             font-weight: 800;
             margin-bottom: 20px;
         }
 
         .cta-section p {
-            font-size: 20px;
+            font-size: clamp(16px, 2.8vw, 20px);
             opacity: 0.95;
             margin-bottom: 40px;
             max-width: 600px;
@@ -554,27 +579,177 @@
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hero-text h1 {
-                font-size: 38px;
+            html {
+                scroll-padding-top: 86px;
+            }
+
+            header {
+                padding: 10px 0;
+            }
+
+            nav {
+                position: relative;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex;
             }
 
             .nav-links {
                 display: none;
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                background: white;
+                border-radius: 16px;
+                padding: 8px;
+                box-shadow: 0 16px 50px rgba(15, 23, 42, 0.18);
+                border: 1px solid #e2e8f0;
+                z-index: 20;
+            }
+
+            .nav-links.nav-open {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 12px 14px;
+                border-radius: 10px;
+            }
+
+            .nav-links a:hover {
+                background: #f1f5f9;
+                color: var(--primary);
+            }
+
+            .cta-btn {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 130px 0 70px;
+            }
+
+            .hero-content {
+                gap: 40px;
+            }
+
+            .pain-points,
+            .solution,
+            .audience,
+            .ai-section,
+            .cta-section {
+                padding: 80px 0;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .solution-grid {
+                gap: 24px;
+            }
+
+            .solution-card {
+                padding: 36px 24px;
+            }
+
+            .audience-grid {
+                gap: 18px;
+                margin-top: 32px;
+            }
+
+            .ai-feature {
+                padding: 16px 18px;
+            }
+
+            .contact-link {
+                width: min(100%, 360px);
+                justify-content: center;
             }
         }
 
         @media (max-width: 600px) {
-            .hero-text h1 {
-                font-size: 32px;
+            .container {
+                padding: 0 16px;
             }
 
-            .section-header h2 {
-                font-size: 32px;
+            .header-cta {
+                display: none;
+            }
+
+            .hero {
+                padding: 118px 0 56px;
+            }
+
+            .hero-badges {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 320px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .badge {
+                justify-content: center;
+            }
+
+            .hero-text .subtitle {
+                line-height: 1.6;
+            }
+
+            .pain-card,
+            .audience-item {
+                padding: 24px 20px;
+            }
+
+            .solution-card {
+                padding: 28px 20px;
+            }
+
+            .solution-card h3 {
+                font-size: 22px;
+            }
+
+            .ai-feature {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
             }
 
             .contact-links {
                 flex-direction: column;
                 align-items: center;
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .hero {
+                padding-top: 112px;
+            }
+
+            .cta-btn,
+            .cta-btn-white,
+            .contact-link {
+                width: 100%;
+            }
+
+            .cta-btn-white {
+                padding: 14px 20px;
+            }
+
+            .contact-link {
+                padding: 16px 18px;
             }
         }
 
@@ -596,14 +771,15 @@
         <div class="container">
             <nav>
                 <div class="logo">Reelixy</div>
-                <ul class="nav-links">
+                <button class="mobile-menu-btn" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="main-nav">☰</button>
+                <ul class="nav-links" id="main-nav">
                     <li><a href="#pain">Проблеми</a></li>
                     <li><a href="#solution">Рішення</a></li>
                     <li><a href="#ai">AI-агенти</a></li>
                     <li><a href="#audience">Для кого</a></li>
                     <li><a href="#contact">Контакти</a></li>
                 </ul>
-                <a href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" class="cta-btn" target="_blank" rel="noopener noreferrer">Замовити демо</a>
+                <a href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" class="cta-btn header-cta" target="_blank" rel="noopener noreferrer">Замовити демо</a>
             </nav>
         </div>
     </header>
@@ -802,6 +978,35 @@
     </section>
 
     <script>
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuBtn && navLinks) {
+            const closeMobileMenu = () => {
+                navLinks.classList.remove('nav-open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.setAttribute('aria-label', 'Відкрити меню');
+                document.body.classList.remove('menu-open');
+            };
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('nav-open');
+                mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Закрити меню' : 'Відкрити меню');
+                document.body.classList.toggle('menu-open', isOpen);
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 968) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
         // Smooth scroll for internal navigation only
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -852,4 +1057,3 @@
     </script>
 </body>
 </html>
-
