@@ -1,1070 +1,1073 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reelixy — AI-автоматизація та цифрова трансформація бізнесу</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PLRR6B8Z');</script>
-    <!-- End Google Tag Manager -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --success: #10b981;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
-        }
-
-        html {
-            scroll-padding-top: 100px;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 0;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            background: white;
-            color: var(--dark);
-            font-size: 20px;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .cta-btn {
-            background: var(--gradient);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            position: relative;
-            white-space: nowrap;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(34px, 6vw, 52px);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-text .subtitle {
-            font-size: clamp(16px, 2.6vw, 20px);
-            color: var(--gray);
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .hero-badges {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .badge {
-            background: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .badge-icon {
-            width: 20px;
-            height: 20px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
-        }
-
-        /* Pain Points Section */
-        .pain-points {
-            padding: 100px 0;
-            background: white;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(30px, 4.8vw, 42px);
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .section-header p {
-            font-size: 18px;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .pain-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .pain-card {
-            background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 100%);
-            padding: 40px 30px;
-            border-radius: 20px;
-            border-left: 4px solid #ef4444;
-            transition: transform 0.3s;
-        }
-
-        .pain-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .pain-icon {
-            width: 60px;
-            height: 60px;
-            background: #ef4444;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-
-        .pain-card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .pain-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* Solution Section */
-        .solution {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        }
-
-        .solution-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .solution-card {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .solution-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-        }
-
-        .solution-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-        }
-
-        .solution-number {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 25px;
-        }
-
-        .solution-card h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .solution-card p {
-            color: var(--gray);
-            line-height: 1.8;
-            font-size: 16px;
-        }
-
-        /* Target Audience */
-        .audience {
-            padding: 100px 0;
-            background: white;
-        }
-
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
-        }
-
-        .audience-item {
-            background: var(--light);
-            padding: 30px 25px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .audience-item:hover {
-            transform: scale(1.05);
-            background: var(--gradient);
-        }
-
-        .audience-item:hover h4,
-        .audience-item:hover p {
-            color: white;
-        }
-
-        .audience-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .audience-item h4 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--dark);
-            transition: color 0.3s;
-        }
-
-        .audience-item p {
-            color: var(--gray);
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        /* AI Section */
-        .ai-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .ai-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .ai-text h2 {
-            font-size: clamp(30px, 4.8vw, 42px);
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .ai-text p {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        .ai-features {
-            display: grid;
-            gap: 20px;
-        }
-
-        .ai-feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px 25px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .ai-feature-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .ai-feature h4 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .ai-feature p {
-            font-size: 14px;
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            background: var(--gradient);
-            text-align: center;
-            color: white;
-        }
-
-        .cta-section h2 {
-            font-size: clamp(32px, 5.6vw, 48px);
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            font-size: clamp(16px, 2.8vw, 20px);
-            opacity: 0.95;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn-white {
-            background: white;
-            color: var(--primary);
-            padding: 16px 40px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 18px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            position: relative;
-        }
-
-        .cta-btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 80px 0;
-            background: white;
-            text-align: center;
-        }
-
-        .contact-section h2 {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--light);
-            padding: 20px 35px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 18px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            z-index: 10;
-            position: relative;
-        }
-
-        .contact-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            html {
-                scroll-padding-top: 86px;
-            }
-
-            header {
-                padding: 10px 0;
-            }
-
-            nav {
-                position: relative;
-            }
-
-            .logo {
-                font-size: 24px;
-            }
-
-            .mobile-menu-btn {
-                display: inline-flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: calc(100% + 10px);
-                left: 0;
-                right: 0;
-                background: white;
-                border-radius: 16px;
-                padding: 8px;
-                box-shadow: 0 16px 50px rgba(15, 23, 42, 0.18);
-                border: 1px solid #e2e8f0;
-                z-index: 20;
-            }
-
-            .nav-links.nav-open {
-                display: flex;
-                flex-direction: column;
-                gap: 2px;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 12px 14px;
-                border-radius: 10px;
-            }
-
-            .nav-links a:hover {
-                background: #f1f5f9;
-                color: var(--primary);
-            }
-
-            .cta-btn {
-                padding: 10px 18px;
-                font-size: 14px;
-            }
-
-            .hero {
-                padding: 130px 0 70px;
-            }
-
-            .hero-content {
-                gap: 40px;
-            }
-
-            .pain-points,
-            .solution,
-            .audience,
-            .ai-section,
-            .cta-section {
-                padding: 80px 0;
-            }
-
-            .section-header {
-                margin-bottom: 40px;
-            }
-
-            .solution-grid {
-                gap: 24px;
-            }
-
-            .solution-card {
-                padding: 36px 24px;
-            }
-
-            .audience-grid {
-                gap: 18px;
-                margin-top: 32px;
-            }
-
-            .ai-feature {
-                padding: 16px 18px;
-            }
-
-            .contact-link {
-                width: min(100%, 360px);
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .header-cta {
-                display: none;
-            }
-
-            .hero {
-                padding: 118px 0 56px;
-            }
-
-            .hero-badges {
-                flex-direction: column;
-                align-items: stretch;
-                max-width: 320px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .badge {
-                justify-content: center;
-            }
-
-            .hero-text .subtitle {
-                line-height: 1.6;
-            }
-
-            .pain-card,
-            .audience-item {
-                padding: 24px 20px;
-            }
-
-            .solution-card {
-                padding: 28px 20px;
-            }
-
-            .solution-card h3 {
-                font-size: 22px;
-            }
-
-            .ai-feature {
-                flex-direction: column;
-                align-items: flex-start;
-                text-align: left;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 14px;
-            }
-        }
-
-        @media (max-width: 430px) {
-            .hero {
-                padding-top: 112px;
-            }
-
-            .cta-btn,
-            .cta-btn-white,
-            .contact-link {
-                width: 100%;
-            }
-
-            .cta-btn-white {
-                padding: 14px 20px;
-            }
-
-            .contact-link {
-                padding: 16px 18px;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reelixy — Презентація для клієнтів</title>
+  <meta name="description" content="Reelixy — AI Business Automation. Партнер з цифрової трансформації та автоматизації бізнес-процесів.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PLRR6B8Z');</script>
+  <!-- End Google Tag Manager -->
+  <style>
+    :root {
+      --primary: #0057b7;
+      --primary-strong: #1447e6;
+      --accent: #ffb000;
+      --ink: #0b1220;
+      --muted: #4a5565;
+      --bg: #fbfbf8;
+      --card: #ffffff;
+      --line: rgba(11, 18, 32, 0.12);
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(0, 32, 81, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      font-family: "IBM Plex Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 100% -10%, rgba(0, 87, 183, 0.14), transparent 35%),
+        radial-gradient(circle at -15% 20%, rgba(20, 71, 230, 0.08), transparent 45%),
+        var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1180px, 100% - 40px);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 10px 0;
+      backdrop-filter: blur(10px);
+      background: rgba(251, 251, 248, 0.9);
+      border-bottom: 1px solid rgba(11, 18, 32, 0.08);
+    }
+
+    .header-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid rgba(0, 87, 183, 0.2);
+      box-shadow: 0 8px 20px rgba(0, 87, 183, 0.18);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title strong {
+      font-size: 1.03rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-title span {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid rgba(11, 18, 32, 0.2);
+      background: white;
+      color: var(--ink);
+      border-radius: 12px;
+      width: 42px;
+      height: 42px;
+      font-size: 1.15rem;
+      cursor: pointer;
+    }
+
+    .top-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      color: var(--primary);
+    }
+
+    .btn {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      padding: 11px 20px;
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 24px rgba(0, 87, 183, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: var(--primary-strong);
+    }
+
+    .btn-secondary {
+      padding: 11px 20px;
+      background: white;
+      color: var(--primary);
+      border-color: rgba(0, 87, 183, 0.28);
+    }
+
+    main {
+      padding: 28px 0 80px;
+    }
+
+    .section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-head {
+      margin-bottom: 22px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(0, 87, 183, 0.12);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.92rem;
+      flex-shrink: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-family: "IBM Plex Serif", serif;
+      font-size: clamp(2rem, 4.8vw, 3.5rem);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(1.38rem, 3.2vw, 2.05rem);
+    }
+
+    h3 {
+      font-size: clamp(1.08rem, 2.2vw, 1.32rem);
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .lead {
+      font-size: clamp(1.03rem, 2.1vw, 1.22rem);
+      max-width: 860px;
+    }
+
+    .cover {
+      padding-top: 24px;
+    }
+
+    .cover-card {
+      background: linear-gradient(150deg, rgba(0, 87, 183, 0.09), rgba(255, 255, 255, 0.98));
+      border: 1px solid rgba(0, 87, 183, 0.22);
+      border-radius: 28px;
+      padding: clamp(24px, 4vw, 44px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      right: -70px;
+      top: -95px;
+      background: radial-gradient(circle, rgba(0, 87, 183, 0.3), transparent 65%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 87, 183, 0.24);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .cover-site {
+      margin-top: 16px;
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+
+    .cover-site a {
+      color: var(--primary);
+      text-underline-offset: 4px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(0, 32, 81, 0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .list {
+      list-style: none;
+      display: grid;
+      gap: 11px;
+      margin-top: 16px;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 22px;
+      color: var(--ink);
+    }
+
+    .list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .list.small li {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .note {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .stats-card {
+      text-align: center;
+      padding: 20px 14px;
+    }
+
+    .stats-value {
+      font-size: clamp(1.55rem, 3.3vw, 2.3rem);
+      color: var(--primary);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .muted-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border: 1px solid rgba(11, 18, 32, 0.12);
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .industry-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .industry-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0, 87, 183, 0.09);
+      color: var(--primary);
+      font-size: 0.9rem;
+      border: 1px solid rgba(0, 87, 183, 0.18);
+    }
+
+    .timeline {
+      counter-reset: steps;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline li {
+      counter-increment: steps;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 14px;
+    }
+
+    .timeline li::before {
+      content: counter(steps);
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 87, 183, 0.14);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-top: 1px;
+    }
+
+    .result {
+      margin-top: 12px;
+      font-size: 0.94rem;
+      color: var(--muted);
+      border-top: 1px dashed rgba(11, 18, 32, 0.16);
+      padding-top: 12px;
+    }
+
+    .crm-frame {
+      border: 1px solid rgba(0, 87, 183, 0.28);
+      background: linear-gradient(130deg, rgba(0, 87, 183, 0.1), rgba(255, 255, 255, 0.98));
+      border-radius: 24px;
+      padding: clamp(18px, 2.8vw, 30px);
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #0057b7, #1447e6);
+      color: white;
+      border-radius: 24px;
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: 0 18px 44px rgba(0, 35, 87, 0.35);
+    }
+
+    .cta-box h2,
+    .cta-box p,
+    .cta-box a,
+    .cta-box li,
+    .cta-box .section-number {
+      color: white;
+    }
+
+    .cta-box .section-number {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .cta-row {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cta-box .btn-secondary {
+      color: #053b84;
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .contacts {
+      margin-top: 14px;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .contacts a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.65);
+      width: fit-content;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 24px 0 36px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-align: center;
+    }
+
+    @media (max-width: 1080px) {
+      .header-row {
+        grid-template-columns: auto auto 1fr auto;
+      }
+
+      .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .top-nav {
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.98);
+        border: 1px solid rgba(11, 18, 32, 0.14);
+        border-radius: 16px;
+        padding: 10px;
+        display: none;
+        box-shadow: var(--shadow);
+      }
+
+      .top-nav.open {
+        display: block;
+      }
+
+      .top-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+
+      .top-nav a {
+        display: block;
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+
+      .top-nav a:hover {
+        background: rgba(0, 87, 183, 0.08);
+      }
+
+      .header-cta {
+        justify-self: end;
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(1180px, 100% - 28px);
+      }
+
+      html {
+        scroll-padding-top: 76px;
+      }
+
+      .site-header {
+        padding: 8px 0;
+      }
+
+      .header-row {
+        grid-template-columns: auto auto 1fr;
+        gap: 10px;
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      .brand img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand-title span {
+        display: none;
+      }
+
+      .section {
+        padding: 36px 0;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .cover-card {
+        border-radius: 20px;
+      }
+
+      .section-number {
+        width: 30px;
+        height: 30px;
+      }
+
+      .cta-row .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLRR6B8Z"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Reelixy</div>
-                <button class="mobile-menu-btn" type="button" aria-label="Відкрити меню" aria-expanded="false" aria-controls="main-nav">☰</button>
-                <ul class="nav-links" id="main-nav">
-                    <li><a href="#pain">Проблеми</a></li>
-                    <li><a href="#solution">Рішення</a></li>
-                    <li><a href="#ai">AI-агенти</a></li>
-                    <li><a href="#audience">Для кого</a></li>
-                    <li><a href="#contact">Контакти</a></li>
-                </ul>
-                <a href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" class="cta-btn header-cta" target="_blank" rel="noopener noreferrer">Замовити демо</a>
-            </nav>
-        </div>
-    </header>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLRR6B8Z"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text fade-in">
-                    <div class="hero-badges">
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            Instagram Direct
-                        </div>
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            Telegram
-                        </div>
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            Viber
-                        </div>
-                        <div class="badge">
-                            <span class="badge-icon">✓</span>
-                            WhatsApp
-                        </div>
-                    </div>
-                    <h1>AI-автоматизація та цифрова трансформація бізнесу</h1>
-                    <p class="subtitle">Reelixy — це команда з AI‑автоматизації, яка проводить компанії через цифрову трансформацію: аналізує процеси, проєктує рішення, впроваджує інтеграції та забезпечує підтримку після запуску, щоб результат був не "на словах", а в цифрах.</p>
-                    <a href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" class="cta-btn" target="_blank" rel="noopener noreferrer">Замовити демо →</a>
-                </div>
-            </div>
-        </div>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="#cover" aria-label="Reelixy">
+          <img src="https://www.reelixy.com/Logo_Reelixy.jpeg" alt="Reelixy logo">
+          <span class="brand-title">
+            <strong>Reelixy</strong>
+            <span>AI Business Automation</span>
+          </span>
+        </a>
+
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Відкрити меню">☰</button>
+
+        <nav class="top-nav" id="main-nav">
+          <ul>
+            <li><a href="#cover">Обкладинка</a></li>
+            <li><a href="#who">Хто ми</a></li>
+            <li><a href="#solutions">Рішення</a></li>
+            <li><a href="#packages">Пакети</a></li>
+            <li><a href="#crm">Reelixy CRM</a></li>
+            <li><a href="#cta">Контакти</a></li>
+          </ul>
+        </nav>
+
+        <a class="btn btn-primary header-cta" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section cover" id="cover">
+      <div class="container">
+        <article class="cover-card reveal">
+          <span class="kicker">1. Обкладинка</span>
+          <h1>Reelixy — AI Business Automation</h1>
+          <p class="lead">Партнер з цифрової трансформації та автоматизації бізнес‑процесів за допомогою AI.</p>
+          <p class="cover-site"><a href="https://reelixy.com" target="_blank" rel="noopener noreferrer">reelixy.com</a></p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Замовити демо</a>
+            <a class="btn btn-secondary" href="#who">Перейти до презентації</a>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section class="pain-points" id="pain">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Головний біль, який ми вирішуємо</h2>
-                <p>Якщо заявки йдуть в Direct/месенджери, зазвичай відбувається одне й те саме:</p>
-            </div>
-            <div class="pain-grid">
-                <div class="pain-card fade-in">
-                    <div class="pain-icon">📉</div>
-                    <h3>Ліди губляться в чатах</h3>
-                    <p>Повідомлення загубилися серед сотень інших, клієнти чекають відповіді днями, а ви навіть не помічаєте втрачених можливостей.</p>
-                </div>
-                <div class="pain-card fade-in">
-                    <div class="pain-icon">⏰</div>
-                    <h3>Відповідають повільно</h3>
-                    <p>Клієнт пише — відповідь через години. За цей час він вже купив у конкурента. Швидкість = гроші.</p>
-                </div>
-                <div class="pain-card fade-in">
-                    <div class="pain-icon">👥</div>
-                    <h3>Немає контролю</h3>
-                    <p>Хто відповів? Що пообіцяли? На якому етапі угода? Без системи ви працюєте наосліп.</p>
-                </div>
-                <div class="pain-card fade-in">
-                    <div class="pain-icon">📊</div>
-                    <h3>Немає аналітики</h3>
-                    <p>Звідки заявки? Де просадки? Хто "тягне" план? Без даних неможливо приймати правильні рішення.</p>
-                </div>
-            </div>
+    <section class="section" id="who">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">2</span>
+          <h2>Хто ми</h2>
         </div>
+        <p class="lead reveal">Reelixy — команда, що впроваджує AI в бізнес-процеси.</p>
+        <ul class="list reveal">
+          <li>Працюємо під ключ: від ідеї та аудиту до запуску і масштабування.</li>
+          <li>Фокус — вимірюваний результат, контроль якості, підтримка після релізу.</li>
+          <li>Не просто робимо рішення — гарантуємо результат.</li>
+        </ul>
+        <p class="note reveal">(відображається у підході та домовленостях)</p>
+      </div>
     </section>
 
-    <section class="solution" id="solution">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Що ви отримуєте з Reelixy</h2>
-                <p>Перетворіть хаос на систему: діалоги → ліди → етапи → угоди → гроші</p>
-            </div>
-            <div class="solution-grid">
-                <div class="solution-card fade-in">
-                    <div class="solution-number">1</div>
-                    <h3>Єдиний центр комунікацій</h3>
-                    <p>Всі звернення та переписки — в одному робочому просторі, щоб команда не стрибала між додатками і не втрачала контекст.</p>
-                </div>
-                <div class="solution-card fade-in">
-                    <div class="solution-number">2</div>
-                    <h3>Воронка продажів, яка реально працює</h3>
-                    <p>Ліди автоматично потрапляють в CRM, розподіляються по етапах, фіксуються статуси, дедлайни, відповідальні. Ви бачите, де застрягли угоди і чому.</p>
-                </div>
-                <div class="solution-card fade-in">
-                    <div class="solution-number">3</div>
-                    <h3>AI-агенти як "прискорювач" продажів</h3>
-                    <p>Зробимо кастом під ваші задачі. AI обробляє перші повідомлення, кваліфікує лідів, відповідає на часті питання і передає "гарячих" клієнтів менеджерам.</p>
-                </div>
-            </div>
+    <section class="section" id="mission">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">3</span>
+          <h2>Про що ми (наша місія)</h2>
         </div>
+        <p class="lead reveal">Робимо бізнес швидшим, точнішим і керованим через автоматизацію та AI.</p>
+        <ul class="list reveal">
+          <li>Зменшуємо ручну рутину.</li>
+          <li>Прибираємо людські помилки.</li>
+          <li>Пришвидшуємо реакцію команди на клієнтів.</li>
+          <li>Будуємо прозорість у воронці, операціях і даних.</li>
+        </ul>
+      </div>
     </section>
 
-    <section class="audience" id="audience">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>Кому підходить Reelixy</h2>
-                <p>Бізнесам, які отримують заявки через Instagram/Direct та месенджери</p>
-            </div>
-            <div class="audience-grid">
-                <div class="audience-item fade-in">
-                    <div class="audience-icon">🛍️</div>
-                    <h4>E-commerce</h4>
-                    <p>Інтернет-магазини</p>
-                </div>
-                <div class="audience-item fade-in">
-                    <div class="audience-icon">💼</div>
-                    <h4>Онлайн-послуги</h4>
-                    <p>Консалтинг, коучинг</p>
-                </div>
-                <div class="audience-item fade-in">
-                    <div class="audience-icon">🎓</div>
-                    <h4>Освітні проєкти</h4>
-                    <p>Школи, курси</p>
-                </div>
-                <div class="audience-item fade-in">
-                    <div class="audience-icon">🏢</div>
-                    <h4>Агентства</h4>
-                    <p>Маркетинг, дизайн</p>
-                </div>
-                <div class="audience-item fade-in">
-                    <div class="audience-icon">👨‍⚕️</div>
-                    <h4>Локальні сервіси</h4>
-                    <p>Клініки, салони</p>
-                </div>
-                <div class="audience-item fade-in">
-                    <div class="audience-icon">⭐</div>
-                    <h4>Експерти</h4>
-                    <p>Фрілансери, блогери</p>
-                </div>
-            </div>
+    <section class="section" id="numbers">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">4</span>
+          <h2>Цифри, які підтверджують експертизу</h2>
         </div>
+        <div class="grid grid-4 reveal">
+          <article class="card stats-card">
+            <div class="stats-value">500+</div>
+            <p>реалізованих проєктів</p>
+          </article>
+          <article class="card stats-card">
+            <div class="stats-value">12</div>
+            <p>індустрій досвіду</p>
+          </article>
+          <article class="card stats-card">
+            <div class="stats-value">~40%</div>
+            <p>середнє зростання KPI</p>
+          </article>
+          <article class="card stats-card">
+            <div class="stats-value">99.9%</div>
+            <p>аптайм рішень</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section class="ai-section" id="ai">
-        <div class="container">
-            <div class="ai-content">
-                <div class="ai-text fade-in">
-                    <h2>AI-агенти — ваш новий відділ продажів</h2>
-                    <p>Reelixy робить кастом під ваші задачі. Налаштуйте AI так, як потрібно саме вашему бізнесу.</p>
-                    <div class="ai-features">
-                        <div class="ai-feature">
-                            <div class="ai-feature-icon">⚡</div>
-                            <div>
-                                <h4>Миттєві відповіді</h4>
-                                <p>Клієнт отримує відповідь за секунди, 24/7</p>
-                            </div>
-                        </div>
-                        <div class="ai-feature">
-                            <div class="ai-feature-icon">🎯</div>
-                            <div>
-                                <h4>Кваліфікація лідів</h4>
-                                <p>AI визначає гарячих клієнтів автоматично</p>
-                            </div>
-                        </div>
-                        <div class="ai-feature">
-                            <div class="ai-feature-icon">💰</div>
-                            <div>
-                                <h4>Доведення до оплати</h4>
-                                <p>Супровід клієнта на всіх етапах воронки</p>
-                            </div>
-                        </div>
-                        <div class="ai-feature">
-                            <div class="ai-feature-icon">📈</div>
-                            <div>
-                                <h4>Аналітика діалогів</h4>
-                                <p>Розуміння, що працює, а що ні</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section" id="founders">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">5</span>
+          <h2>Засновники</h2>
         </div>
+        <div class="grid grid-2 reveal">
+          <article class="card">
+            <span class="muted-chip">Co‑founder / CEO</span>
+            <h3 style="margin-top:10px;">Roman Bilousov</h3>
+            <p>Візія, стратегія, партнерства, розвиток AI‑напряму.</p>
+          </article>
+          <article class="card">
+            <span class="muted-chip">Co‑founder / Marketing</span>
+            <h3 style="margin-top:10px;">Elina Bilousova</h3>
+            <p>Бренд, комунікація, маркетинг‑стратегія, зростання впізнаваності.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <h2 class="fade-in">Готові перетворити повідомлення на продажі?</h2>
-            <p class="fade-in">Забронюйте безкоштовну демо-зустріч. Налаштування займе 15 хвилин.</p>
-            <a href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" class="cta-btn-white fade-in" target="_blank" rel="noopener noreferrer">📅 Замовити демо</a>
+    <section class="section" id="audience">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">6</span>
+          <h2>Для кого ми</h2>
         </div>
+        <p class="lead reveal">Для компаній, які хочуть системність та зростання без роздування штату.</p>
+        <p class="reveal" style="margin-top:12px;">B2B процеси в різних індустріях:</p>
+        <div class="industry-wrap reveal">
+          <span class="industry-chip">Фінанси</span>
+          <span class="industry-chip">Ритейл</span>
+          <span class="industry-chip">Виробництво</span>
+          <span class="industry-chip">HR</span>
+          <span class="industry-chip">Sales</span>
+          <span class="industry-chip">Логістика</span>
+          <span class="industry-chip">Healthcare</span>
+          <span class="industry-chip">Освіта</span>
+          <span class="industry-chip">Нерухомість</span>
+          <span class="industry-chip">IT</span>
+          <span class="industry-chip">Консалтинг</span>
+          <span class="industry-chip">E‑commerce</span>
+        </div>
+        <p class="note reveal">Якщо вашої індустрії немає в списку — це ок: ми працюємо з будь‑якими B2B процесами.</p>
+      </div>
     </section>
 
-    <section class="contact-section">
-        <div class="container">
-            <h2 class="fade-in">Зв'яжіться з нами</h2>
-            <div class="contact-links">
-                <a href="https://t.me/reelixy_com" class="contact-link fade-in" target="_blank" rel="noopener noreferrer">
-                    <div class="contact-icon">✈️</div>
-                    <span>@reelixy_com</span>
-                </a>
-                <a href="mailto:info@reelixy.com" class="contact-link fade-in">
-                    <div class="contact-icon">📧</div>
-                    <span>info@reelixy.com</span>
-                </a>
-            </div>
+    <section class="section" id="what-we-build">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">7</span>
+          <h2>Що ми створюємо</h2>
         </div>
+        <p class="lead reveal">Працюємо у двох напрямах:</p>
+        <div class="grid grid-2 reveal">
+          <article class="card">
+            <h3>1. Готові продукти</h3>
+            <p>Швидкий запуск та прогнозований результат.</p>
+          </article>
+          <article class="card">
+            <h3>2. Кастомні AI‑рішення</h3>
+            <p>Під ваші задачі: інтеграції, нестандартні процеси, специфічні вимоги.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <script>
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+    <section class="section" id="solutions">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">8</span>
+          <h2>Наші AI‑рішення (лінійка)</h2>
+        </div>
+        <div class="grid grid-3 reveal">
+          <article class="card">
+            <h3>AI Finance Analytics</h3>
+            <p>Аналіз фінпоказників і прогнозування.</p>
+          </article>
+          <article class="card">
+            <h3>HR Assistant with AI</h3>
+            <p>Автоматизація рекрутингу та HR‑операцій.</p>
+          </article>
+          <article class="card">
+            <h3>Smart CRM with AI</h3>
+            <p>Автоматизація продажів і прогнозна аналітика.</p>
+          </article>
+          <article class="card">
+            <h3>Customer Chatbot</h3>
+            <p>24/7 відповіді, консультації, інтеграції.</p>
+          </article>
+          <article class="card">
+            <h3>Document Workflow Automation</h3>
+            <p>OCR, класифікація, цифрові архіви.</p>
+          </article>
+          <article class="card">
+            <h3>Predictive Analytics</h3>
+            <p>Прогноз попиту/ризиків та оптимізація процесів.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        if (mobileMenuBtn && navLinks) {
-            const closeMobileMenu = () => {
-                navLinks.classList.remove('nav-open');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenuBtn.setAttribute('aria-label', 'Відкрити меню');
-                document.body.classList.remove('menu-open');
-            };
+    <section class="section" id="packages">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">9</span>
+          <h2>Пакети (продуктовий підхід до впровадження)</h2>
+        </div>
+        <div class="grid grid-3 reveal">
+          <article class="card">
+            <span class="muted-chip">≈ 30 днів</span>
+            <h3 style="margin-top:10px;">AI Sales System</h3>
+            <ul class="list small">
+              <li>Захоплення та кваліфікація лідів.</li>
+              <li>Фоллоу‑апи та чистота CRM.</li>
+              <li>Дашборди + навчання команди.</li>
+            </ul>
+            <p class="result">Результат: більше кваліфікованих лідів, швидша реакція, прогнозована воронка.</p>
+          </article>
+          <article class="card">
+            <span class="muted-chip">≈ 45–60 днів</span>
+            <h3 style="margin-top:10px;">Automation Department</h3>
+            <ul class="list small">
+              <li>CRM, документи, операції, інтеграції.</li>
+              <li>Крос‑командна автоматизація процесів.</li>
+              <li>Моніторинг і керованість базових процесів.</li>
+            </ul>
+            <p class="result">Результат: менше ручної роботи, менше помилок, масштабована база під AI.</p>
+          </article>
+          <article class="card">
+            <span class="muted-chip">Щомісяця</span>
+            <h3 style="margin-top:10px;">Support &amp; Iteration</h3>
+            <ul class="list small">
+              <li>Моніторинг, зміни, покращення.</li>
+              <li>Регулярна звітність і пріоритезація.</li>
+              <li>Пріоритетна підтримка без техборгу.</li>
+            </ul>
+            <p class="result">Результат: стабільність та постійне зростання ефективності.</p>
+          </article>
+        </div>
+        <p class="note reveal">Ціни в цій версії презентації не вказуємо.</p>
+      </div>
+    </section>
 
-            mobileMenuBtn.addEventListener('click', () => {
-                const isOpen = navLinks.classList.toggle('nav-open');
-                mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Закрити меню' : 'Відкрити меню');
-                document.body.classList.toggle('menu-open', isOpen);
-            });
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">10</span>
+          <h2>Як ми працюємо (етапи)</h2>
+        </div>
+        <ol class="timeline reveal">
+          <li><p>Діагностика / аудит процесів і цілей.</p></li>
+          <li><p>Карта процесів + план впровадження (етапи, KPI, ризики).</p></li>
+          <li><p>Розробка/налаштування + інтеграції.</p></li>
+          <li><p>Тестування та запуск.</p></li>
+          <li><p>Навчання команди + документація.</p></li>
+          <li><p>Підтримка та оптимізація після запуску.</p></li>
+        </ol>
+      </div>
+    </section>
 
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', closeMobileMenu);
-            });
+    <section class="section" id="crm">
+      <div class="container">
+        <div class="crm-frame reveal">
+          <div class="section-head" style="margin-bottom: 14px;">
+            <span class="section-number">11</span>
+            <h2>Важлива рамка: Reelixy CRM — це продукт</h2>
+          </div>
+          <p class="lead">Ми — Reelixy (команда AI‑автоматизації). Reelixy CRM — наш продукт, який допомагає систематизувати продажі та взаємодію з клієнтами.</p>
+        </div>
+      </div>
+    </section>
 
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 968) {
-                    closeMobileMenu();
-                }
-            });
+    <section class="section" id="crm-value">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">12</span>
+          <h2>Reelixy CRM — що це дає бізнесу</h2>
+        </div>
+        <ul class="list reveal">
+          <li>Порядок у лідах та комунікаціях.</li>
+          <li>Контроль відповідей і швидкості реакції менеджерів.</li>
+          <li>Прозора воронка продажів та прогнозування.</li>
+          <li>Менше втрачених клієнтів і хаосу в переписках.</li>
+          <li>Дані в CRM → рішення на основі цифр, а не відчуттів.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="crm-fit">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">13</span>
+          <h2>Кому підходить Reelixy CRM</h2>
+        </div>
+        <ul class="list reveal">
+          <li>Компаніям із потоком звернень із Instagram, месенджерів і сайту.</li>
+          <li>Тим, у кого менеджери ведуть клієнтів у чатах і немає єдиної системи.</li>
+          <li>Командам продажів, які хочуть керовану воронку, контроль і масштабування.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="crm-modules">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">14</span>
+          <h2>Що всередині Reelixy CRM (модулі)</h2>
+        </div>
+        <div class="grid grid-2 reveal">
+          <article class="card">
+            <h3>24/7 AI Sales Engine</h3>
+            <p>Працює без пауз, відповідає клієнтам та підтримує воронку постійно.</p>
+          </article>
+          <article class="card">
+            <h3>Омніканальність</h3>
+            <p>Instagram + Telegram у базі. Інші канали підключаються додатково.</p>
+          </article>
+          <article class="card">
+            <h3>AI‑кваліфікація лідів</h3>
+            <p>Первинний відбір і пріоритезація звернень до підключення менеджера.</p>
+          </article>
+          <article class="card">
+            <h3>Картка клієнта та історія</h3>
+            <p>Вся взаємодія з клієнтом зберігається роками в одній системі.</p>
+          </article>
+          <article class="card">
+            <h3>Авто фоллоу‑апи</h3>
+            <p>Система сама повертає лідів у діалог і не дає угодам “зависати”.</p>
+          </article>
+          <article class="card">
+            <h3>Контроль менеджерів</h3>
+            <p>Прозорість по відповідях, швидкості реакції і роботі з лідами.</p>
+          </article>
+          <article class="card">
+            <h3>Сценарії продажу</h3>
+            <p>Один раз налаштовуємо правильний продажний процес, далі система тримає стандарт.</p>
+          </article>
+          <article class="card">
+            <h3>Гнучкі інтеграції</h3>
+            <p>Архітектура дозволяє розширювати функціонал під ваші бізнес‑процеси.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why-now">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-number">15</span>
+          <h2>Чому зараз (болі, які закриваємо)</h2>
+        </div>
+        <ul class="list reveal">
+          <li>Втрата лідів через повільні відповіді.</li>
+          <li>Немає контролю фоллоу‑апів.</li>
+          <li>Звіти руками, дані розкидані.</li>
+          <li>Складно прогнозувати продажі й навантаження команди.</li>
+          <li>Масштабування без системи перетворюється на хаос.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="cta">
+      <div class="container">
+        <article class="cta-box reveal">
+          <div class="section-head" style="margin-bottom: 12px;">
+            <span class="section-number">16</span>
+            <h2>Call to action</h2>
+          </div>
+          <p class="lead">Безкоштовний аудит: покажемо, що автоматизувати першим і який буде ефект/ROI саме для вашого бізнесу.</p>
+          <div class="cta-row">
+            <a class="btn btn-secondary" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Запланувати аудит</a>
+            <a class="btn btn-secondary" href="https://reelixy.com" target="_blank" rel="noopener noreferrer">Сайт: reelixy.com</a>
+          </div>
+          <ul class="contacts">
+            <li><a href="https://t.me/reelixy_com" target="_blank" rel="noopener noreferrer">Telegram: @reelixy_com</a></li>
+            <li><a href="mailto:info@reelixy.com">Email: info@reelixy.com</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© Reelixy, 2026. AI Business Automation.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const nav = document.querySelector('.top-nav');
+
+    function closeMenu() {
+      if (!menuBtn || !nav) return;
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', 'Відкрити меню');
+      document.body.classList.remove('menu-open');
+    }
+
+    if (menuBtn && nav) {
+      menuBtn.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuBtn.setAttribute('aria-label', isOpen ? 'Закрити меню' : 'Відкрити меню');
+        document.body.classList.toggle('menu-open', isOpen);
+      });
+
+      nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1080) {
+          closeMenu();
         }
+      });
+    }
 
-        // Smooth scroll for internal navigation only
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                // Only prevent default for internal page anchors
-                if (href.length > 1 && !href.includes('calendar.app.google') && !href.includes('t.me') && !href.includes('mailto:')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
-            } else {
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            }
-        });
-    </script>
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
