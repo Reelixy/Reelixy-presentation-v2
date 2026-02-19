@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reelixy — Презентація для клієнтів</title>
   <meta name="description" content="Reelixy — AI Business Automation. Партнер з цифрової трансформації та автоматизації бізнес-процесів.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600&display=swap"></noscript>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -84,6 +88,11 @@
       text-decoration: none;
       color: var(--ink);
       min-width: 0;
+    }
+
+    .brand picture {
+      display: block;
+      flex-shrink: 0;
     }
 
     .brand img {
@@ -714,8 +723,11 @@
   <header class="site-header">
     <div class="container">
       <div class="header-row">
-        <a class="brand" href="#cover" aria-label="Reelixy">
-          <img src="assets/logo-reelixy.jpeg" alt="Reelixy logo">
+        <a class="brand" href="#cover">
+          <picture>
+            <source srcset="assets/logo-reelixy-96.webp" type="image/webp">
+            <img src="assets/logo-reelixy-96.jpg" alt="Reelixy logo" width="42" height="42" fetchpriority="high">
+          </picture>
           <span class="brand-title">
             <strong>Reelixy</strong>
             <span>AI Business Automation</span>
@@ -731,7 +743,7 @@
             <li><a href="#packages">Пакети</a></li>
             <li><a href="#crm">Reelixy CRM</a></li>
             <li><a href="#cta">Контакти</a></li>
-            <li class="nav-mobile-only"><a class="nav-audit-link" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a></li>
+            <li class="nav-mobile-only"><a class="nav-audit-link" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer" aria-label="Безкоштовний аудит">Безкоштовний аудит</a></li>
           </ul>
         </nav>
 
@@ -1066,7 +1078,7 @@
       <div class="container">
         <article class="cta-box reveal">
           <div class="section-head" style="margin-bottom: 12px;">
-            <h2>Call to action</h2>
+            <h2>Наступний крок</h2>
           </div>
           <p class="lead">Безкоштовний аудит: покажемо, що автоматизувати першим і який буде ефект/ROI саме для вашого бізнесу.</p>
           <div class="cta-row">
@@ -1112,8 +1124,22 @@
         link.addEventListener('click', closeMenu);
       });
 
+      document.addEventListener('click', (event) => {
+        if (!nav.classList.contains('open')) return;
+        const target = event.target;
+        if (!nav.contains(target) && !menuBtn.contains(target)) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeMenu();
+        }
+      });
+
       window.addEventListener('resize', () => {
-        if (window.innerWidth > 1080) {
+        if (window.innerWidth > 1024) {
           closeMenu();
         }
       });
