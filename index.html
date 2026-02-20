@@ -764,11 +764,11 @@
             <li><a href="#packages">Пакети</a></li>
             <li><a href="#crm">Reelixy CRM</a></li>
             <li><a href="#cta">Контакти</a></li>
-            <li class="nav-mobile-only"><a class="nav-audit-link" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer" aria-label="Безкоштовний аудит">Безкоштовний аудит</a></li>
+            <li class="nav-mobile-only"><a class="nav-audit-link" data-track-label="mobile_audit_cta" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer" aria-label="Безкоштовний аудит">Безкоштовний аудит</a></li>
           </ul>
         </nav>
 
-        <a class="btn btn-primary header-cta" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a>
+        <a class="btn btn-primary header-cta" data-track-label="header_audit_cta" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a>
       </div>
     </div>
   </header>
@@ -779,9 +779,9 @@
         <article class="cover-card reveal">
           <h1>Reelixy — AI Business Automation</h1>
           <p class="lead">Партнер з цифрової трансформації та автоматизації бізнес‑процесів за допомогою AI.</p>
-          <p class="cover-site"><a href="https://reelixy.com" target="_blank" rel="noopener noreferrer">reelixy.com</a></p>
+          <p class="cover-site"><a data-track-label="hero_site_link" href="https://reelixy.com" target="_blank" rel="noopener noreferrer">reelixy.com</a></p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Замовити демо</a>
+            <a class="btn btn-primary" data-track-label="hero_demo_cta" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Замовити демо</a>
             <a class="btn btn-secondary" href="#who">Перейти до презентації</a>
           </div>
         </article>
@@ -1103,12 +1103,12 @@
           </div>
           <p class="lead">Безкоштовний аудит: покажемо, що автоматизувати першим і який буде ефект/ROI саме для вашого бізнесу.</p>
           <div class="cta-row">
-            <a class="btn btn-secondary" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Запланувати аудит</a>
-            <a class="btn btn-secondary" href="https://reelixy.com" target="_blank" rel="noopener noreferrer">Сайт: reelixy.com</a>
+            <a class="btn btn-secondary" data-track-label="footer_audit_cta" href="https://calendar.app.google/y3pmdjWDh4fUoBZm7" target="_blank" rel="noopener noreferrer">Запланувати аудит</a>
+            <a class="btn btn-secondary" data-track-label="footer_site_link" href="https://reelixy.com" target="_blank" rel="noopener noreferrer">Сайт: reelixy.com</a>
           </div>
           <ul class="contacts">
-            <li><a href="https://t.me/reelixy_com" target="_blank" rel="noopener noreferrer">Telegram: @reelixy_com</a></li>
-            <li><a href="mailto:info@reelixy.com">Email: info@reelixy.com</a></li>
+            <li><a data-track-label="footer_telegram_link" href="https://t.me/reelixy_com" target="_blank" rel="noopener noreferrer">Telegram: @reelixy_com</a></li>
+            <li><a data-track-label="footer_email_link" href="mailto:info@reelixy.com">Email: info@reelixy.com</a></li>
           </ul>
         </article>
       </div>
@@ -1175,6 +1175,255 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    (function setupAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+
+      const STORAGE_KEY = 'reelixy_analytics_state_v1';
+      const SOURCE_KEYS = [
+        'utm_source',
+        'utm_medium',
+        'utm_campaign',
+        'utm_content',
+        'utm_term',
+        'gclid',
+        'fbclid',
+        'ttclid'
+      ];
+      const CAMPAIGN_LINK_HOSTS = new Set([
+        'calendar.app.google',
+        'reelixy.com',
+        'www.reelixy.com',
+        't.me'
+      ]);
+
+      function randomId() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+          return window.crypto.randomUUID();
+        }
+        return `rx_${Date.now()}_${Math.random().toString(16).slice(2, 10)}`;
+      }
+
+      function readState() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY);
+          const parsed = raw ? JSON.parse(raw) : {};
+          return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (error) {
+          return {};
+        }
+      }
+
+      function writeState(state) {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (error) {
+          // Ignore storage write issues in restricted browser modes.
+        }
+      }
+
+      function getDeviceType() {
+        const width = Math.max(window.innerWidth || 0, document.documentElement.clientWidth || 0);
+        if (width <= 767) return 'mobile';
+        if (width <= 1024) return 'tablet';
+        return 'desktop';
+      }
+
+      function getReferrerHost() {
+        if (!document.referrer) return '(direct)';
+        try {
+          return new URL(document.referrer).hostname || '(direct)';
+        } catch (error) {
+          return '(direct)';
+        }
+      }
+
+      function getSourceParams() {
+        const params = new URLSearchParams(window.location.search);
+        const result = {};
+        SOURCE_KEYS.forEach((key) => {
+          result[key] = params.get(key) || '(none)';
+        });
+        return result;
+      }
+
+      function pushEvent(payload) {
+        window.dataLayer.push(payload);
+      }
+
+      function decorateOutboundLinks(basePayload) {
+        document.querySelectorAll('a[href]').forEach((link) => {
+          const href = link.getAttribute('href');
+          if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+            return;
+          }
+
+          let url;
+          try {
+            url = new URL(href, window.location.href);
+          } catch (error) {
+            return;
+          }
+
+          if (!CAMPAIGN_LINK_HOSTS.has(url.hostname)) {
+            return;
+          }
+
+          const paramsToSet = {
+            utm_source: 'reelixy_presentation_v2',
+            utm_medium: 'landing_page',
+            utm_campaign: 'reelixy_company_presentation',
+            rx_vid: basePayload.visitor_id.slice(0, 12),
+            rx_sid: basePayload.session_id.slice(0, 12),
+            rx_visit: String(basePayload.visit_number)
+          };
+
+          if (basePayload.utm_source && basePayload.utm_source !== '(none)') {
+            paramsToSet.rx_src_utm_source = basePayload.utm_source;
+          }
+          if (basePayload.utm_medium && basePayload.utm_medium !== '(none)') {
+            paramsToSet.rx_src_utm_medium = basePayload.utm_medium;
+          }
+          if (basePayload.utm_campaign && basePayload.utm_campaign !== '(none)') {
+            paramsToSet.rx_src_utm_campaign = basePayload.utm_campaign;
+          }
+
+          Object.entries(paramsToSet).forEach(([key, value]) => {
+            if (value && !url.searchParams.has(key)) {
+              url.searchParams.set(key, value);
+            }
+          });
+
+          link.setAttribute('href', url.toString());
+        });
+      }
+
+      const now = Date.now();
+      const state = readState();
+      if (!state.visitorId) state.visitorId = randomId();
+      if (!state.firstVisitAt) state.firstVisitAt = now;
+      state.lastVisitAt = now;
+      state.visitCount = Number(state.visitCount || 0) + 1;
+      writeState(state);
+
+      const sessionId = randomId();
+      const sourceParams = getSourceParams();
+      const visitPayload = {
+        event: 'reelixy_visit',
+        visitor_id: state.visitorId,
+        session_id: sessionId,
+        visit_number: state.visitCount,
+        is_returning: state.visitCount > 1 ? 'yes' : 'no',
+        first_visit_at: new Date(state.firstVisitAt).toISOString(),
+        referrer_host: getReferrerHost(),
+        traffic_source: sourceParams.utm_source !== '(none)' ? sourceParams.utm_source : getReferrerHost(),
+        device_type: getDeviceType(),
+        user_language: navigator.language || '(unknown)',
+        timezone: (Intl.DateTimeFormat().resolvedOptions() || {}).timeZone || '(unknown)',
+        screen_resolution: `${window.screen.width}x${window.screen.height}`,
+        viewport: `${window.innerWidth}x${window.innerHeight}`,
+        page_title: document.title,
+        page_path: window.location.pathname,
+        page_location: window.location.href,
+        ...sourceParams
+      };
+
+      decorateOutboundLinks(visitPayload);
+      pushEvent(visitPayload);
+
+      const seenSections = new Set();
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const sectionId = entry.target.id;
+          if (!sectionId || seenSections.has(sectionId)) return;
+          seenSections.add(sectionId);
+          pushEvent({
+            event: 'reelixy_section_view',
+            section_id: sectionId,
+            visitor_id: state.visitorId,
+            session_id: sessionId,
+            visit_number: state.visitCount
+          });
+        });
+      }, { threshold: 0.45 });
+
+      document.querySelectorAll('section[id]').forEach((section) => sectionObserver.observe(section));
+
+      const sentDepth = new Set();
+      const depthMarks = [25, 50, 75, 100];
+
+      function trackScrollDepth() {
+        const doc = document.documentElement;
+        const maxScroll = doc.scrollHeight - window.innerHeight;
+        if (maxScroll <= 0) return;
+        const depth = Math.min(100, Math.round((window.scrollY / maxScroll) * 100));
+        depthMarks.forEach((mark) => {
+          if (depth >= mark && !sentDepth.has(mark)) {
+            sentDepth.add(mark);
+            pushEvent({
+              event: 'reelixy_scroll_depth',
+              scroll_depth_percent: mark,
+              visitor_id: state.visitorId,
+              session_id: sessionId
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', trackScrollDepth, { passive: true });
+      window.addEventListener('load', trackScrollDepth);
+
+      document.querySelectorAll('a[href]').forEach((link) => {
+        link.addEventListener('click', () => {
+          const rawHref = link.getAttribute('href') || '';
+          const label = (link.dataset.trackLabel || link.textContent || '').trim().slice(0, 120);
+          const sectionNode = link.closest('section');
+          const sectionId = sectionNode ? sectionNode.id : (link.closest('header') ? 'header' : 'unknown');
+
+          if (rawHref.startsWith('#')) {
+            pushEvent({
+              event: 'reelixy_nav_click',
+              click_label: label || rawHref,
+              click_href: rawHref,
+              section_id: sectionId,
+              visitor_id: state.visitorId,
+              session_id: sessionId
+            });
+            return;
+          }
+
+          if (rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) {
+            pushEvent({
+              event: 'reelixy_contact_click',
+              click_label: label || rawHref,
+              click_href: rawHref,
+              section_id: sectionId,
+              visitor_id: state.visitorId,
+              session_id: sessionId
+            });
+            return;
+          }
+
+          let url;
+          try {
+            url = new URL(rawHref, window.location.href);
+          } catch (error) {
+            return;
+          }
+
+          pushEvent({
+            event: url.origin === window.location.origin ? 'reelixy_internal_click' : 'reelixy_outbound_click',
+            click_label: label || url.hostname,
+            click_href: url.href,
+            click_host: url.hostname || '(internal)',
+            section_id: sectionId,
+            visitor_id: state.visitorId,
+            session_id: sessionId
+          });
+        });
+      });
+    })();
   </script>
 </body>
 </html>
